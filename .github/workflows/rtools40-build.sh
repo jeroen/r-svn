@@ -14,7 +14,7 @@ srcdir=$(dirname $(realpath $0))
 if [ "$toolchain" = "ucrt64" ]; then
 sed -i 's|/mingw|/ucrt|g' "${srcdir}/MkRules.local.in"
 sed -i 's|/mingw64|/ucrt64|g' "${srcdir}/create-tcltk-bundle.sh"
-sed -i 's|x86_64|ucrt-x86_64|g' "${srcdir}/create-tcltk-bundle.sh"
+sed -i 's|,x86_64|,ucrt-x86_64|g' "${srcdir}/create-tcltk-bundle.sh"
 fi
 
 # Temp fix for older rtools40 installations
