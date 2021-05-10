@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        toolchain: [ mingw32, mingw64, ucrt64 ]
+        toolchain: [ ucrt64 ]
     steps:
 
     - name: Prepare git
@@ -40,6 +40,10 @@ jobs:
       env:
         toolchain: ${{matrix.toolchain}}
       run: C:\rtools40\usr\bin\bash --login -c "$(cygpath ${env:GITHUB_WORKSPACE})/.github/workflows/rtools40-build.sh"
+
+    - name: Setup tmate session
+      if: failure()
+      uses: mxschmitt/action-tmate@v3
 
     - name: Upload check results
       if: failure()
